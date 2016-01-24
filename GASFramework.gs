@@ -33,12 +33,31 @@ var EVENT_HANDLERS = {
 //                         Initial actions  Name                         onError Message                        Main Functionality
 //                         ---------------  ----                         ---------------                        ------------------
 
-  onOpen:                  [function() {},  'onOpen()',                 'Failed to open sheet',                onOpen_],
+  onInstall:               [function() {},  'onInstall()',              'Failed to install',                    onInstall_],
 }
 
 // function (arg)                     {return eventHandler_(EVENT_HANDLERS., arg)}
 
-function onOpen(arg)               {return eventHandler_(EVENT_HANDLERS.onOpen, arg)}
+function onInstall(arg)               {return eventHandler_(EVENT_HANDLERS.onInstall, arg)}
+
+/**
+ * Event handler for the sheet being opened. This is a special case
+ * as all it can do is create a menu whereas the usual eventHandler_()
+ * does things we don't have permission for at this stage.
+ */
+
+function onOpen() {
+
+  Log.functionEntryPoint()
+  
+  var ui = SpreadsheetApp.getUi()
+  var menu = ui.createAddonMenu()
+
+  menu
+    .addItem('Custom menu item 1', 'onCustomFunction1')
+    .addToUi()
+    
+} // onOpen()
 
 // Private Functions
 // =================
@@ -63,9 +82,7 @@ function eventHandler_(config, arg) {
   // By default, only one instance of this script can run at a time
   var lock = LockService.getScriptLock()
   
-  if (!lock.tryLock(1000)) {
-  
-    Log.warning('Failed to get script lock')
+  if (!lock.tryLock(1000)) {  
     return
   }
   
@@ -108,12 +125,9 @@ function eventHandler_(config, arg) {
  * Private 'on open' event handler
  */
 
-function onOpen_() {
+function onInstall_() {
 
-  SpreadsheetApp.getUi()
-    .createMenu('GAS Template')
-    .addItem('Option 1...', '')
-  .addToUi()
+  // TODO - Anything that needs doing on installation
 
-} // onOpen_()
+} // onInstall_()
 
