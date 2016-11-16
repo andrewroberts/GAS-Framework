@@ -18,36 +18,38 @@
 // =============
 
 var SCRIPT_NAME = "GAS Template"
-var SCRIPT_VERSION = "v0.1.0"
+var SCRIPT_VERSION = "v1.0 (Dev)"
 
 var PRODUCTION_VERSION = false
-// var PRODUCTION_VERSION = true
 
 // Log Library
 // -----------
 
 var LOG_LEVEL = PRODUCTION_VERSION ? Log.Level.INFO : Log.Level.FINER
 var LOG_SHEET_ID = ''
-var LOG_DISPLAY_FUNCTION_NAMES = Log.DisplayFunctionNames.NO
+var LOG_DISPLAY_FUNCTION_NAMES = PRODUCTION_VERSION ? Log.DisplayFunctionNames.NO : Log.DisplayFunctionNames.YES
 
 // Assert library
 // --------------
 
 var SEND_ERROR_EMAIL = false
-// var SEND_ERROR_EMAIL = true
-
 var HANDLE_ERROR = Assert.HandleError.THROW
-
-// Any errors will be sent to this address
-var ADMIN_EMAIL_ADDRESS = ''
+var ADMIN_EMAIL_ADDRESS = 'andrewr1969@gmail.com'
 
 // Constants/Enums
 // ===============
 
 
 
+// Function Template
+// -----------------
+
 /**
  *
+ *
+ * @param {Object} 
+ *
+ * @return {Object}
  */
  
 function functionTemplate() {
