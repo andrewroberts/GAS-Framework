@@ -3,6 +3,8 @@
 // JSHint - TODO
 /* jshint asi: true */
 
+"use strict"
+
 // GasTemplate.gs
 // ==============
 //
@@ -83,28 +85,26 @@ function eventHandler_(config, arg) {
   var lock = LockService.getScriptLock()
   
   if (!lock.tryLock(1000)) {  
-    return
+  
+    initialseEventHandler()  
+    
+    Assert.handleError(
+      new Error('Only one call to this function can be made at a time'), 
+        'Failed to handle event', 
+        Log)
   }
   
   try {
 
-    config[0]()
-
-    Log.init({
-      level: LOG_LEVEL, 
-      sheetId: LOG_SHEET_ID,
-      displayFunctionNames: LOG_DISPLAY_FUNCTION_NAMES})
+    // Perform any initial functions
+    config[0]()    
     
-    Log.info('Handling ' + config[1])
+    initialseEventHandler()
     
-    Assert.init({
-      handleError: HANDLE_ERROR, 
-      sendErrorEmail: SEND_ERROR_EMAIL, 
-      emailAddress: ADMIN_EMAIL_ADDRESS,
-      scriptName: SCRIPT_NAME,
-      scriptVersion: SCRIPT_VERSION, 
-    })
+    var userEmail = Session.getActiveUser().getEmail()
+    Log.info('Handling ' + config[1] + ' from ' + userEmail)
     
+    // Call the main function
     return config[3](arg)
     
   } catch (error) {
@@ -116,13 +116,37 @@ function eventHandler_(config, arg) {
     lock.releaseLock()
   }
   
+  // Private Functions
+  // -----------------
+
+  /**
+   * Initialise the event handling
+   */
+ 
+  function initialseEventHandler() {
+
+    Log.init({
+      level: LOG_LEVEL, 
+      sheetId: LOG_SHEET_ID,
+      displayFunctionNames: LOG_DISPLAY_FUNCTION_NAMES})
+      
+    Assert.init({
+      handleError: HANDLE_ERROR, 
+      sendErrorEmail: SEND_ERROR_EMAIL, 
+      emailAddress: ADMIN_EMAIL_ADDRESS,
+      scriptName: SCRIPT_NAME,
+      scriptVersion: SCRIPT_VERSION, 
+    })
+
+  } // eventHandler_.initialseEventHandler() 
+
 } // eventHandler_()
 
 // Private event handlers
 // ----------------------
 
 /**
- * Private 'on open' event handler
+ * Private 'on install' event handler
  */
 
 function onInstall_() {
