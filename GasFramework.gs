@@ -3,15 +3,22 @@
 // JSHint - TODO
 /* jshint asi: true */
 
-"use strict"
+(function() {"use strict"})()
 
 // GasTemplate.gs
 // ==============
+//
+// Dev: AndrewRoberts.net
 //
 // External interface to this script - all of the event handlers.
 //
 // This files contains all of the event handlers, plus miscellaneous functions 
 // not worthy of their own files yet
+//
+// The filename is prepended with _API as the Github chrome extension won't 
+// push a file with the same name as the project.
+
+var Log_
 
 // Public event handlers
 // ---------------------
@@ -40,7 +47,7 @@ var EVENT_HANDLERS = {
 
 // function (arg)                     {return eventHandler_(EVENT_HANDLERS., arg)}
 
-function onInstall(arg)               {return eventHandler_(EVENT_HANDLERS.onInstall, arg)}
+function onInstall (arg1, arg2, properties, lock) {return eventHandler_(EVENT_HANDLERS.onInstall, arg1, arg2, properties, lock)}
 
 /**
  * Event handler for the sheet being opened. This is a special case
@@ -50,10 +57,10 @@ function onInstall(arg)               {return eventHandler_(EVENT_HANDLERS.onIns
 
 function onOpen() {
 
-  Log.functionEntryPoint()
+  Log_.functionEntryPoint()
   
   var ui = SpreadsheetApp.getUi()
-  var menu = ui.createAddonMenu()
+  var menu = ui.createMenu('Custom menu')
 
   menu
     .addItem('Custom menu item 1', 'onCustomFunction1')
@@ -71,18 +78,21 @@ function onOpen() {
  * All external function calls should call this to ensure standard 
  * processing - logging, errors, etc - is always done.
  *
- * @param {array} config:
- *   [0] {function} prefunction
- *   [1] {string} eventName
- *   [2] {string} onErrorMessage
- *   [3] {function} mainFunction
- * @parma {object} arg The argument passed to the top-level event handler
+ * @param {Array} config:
+ *   [0] {Function} prefunction
+ *   [1] {String} eventName
+ *   [2] {String} onErrorMessage
+ *   [3] {Function} mainFunction
+ 
+ * @parma {Object}   arg1       The argument passed to the top-level event handler
+ * @parma {Object}   arg2       The argument passed to the top-level event handler
+ * @parma {Property} properties A PropertiesService
+ * @parma {Lock}     lock       A LockService
  */
 
-function eventHandler_(config, arg) {
+function eventHandler_(config, arg1, arg2, properties, lock) {
 
   // By default, only one instance of this script can run at a time
-  var lock = LockService.getScriptLock()
   
   if (!lock.tryLock(1000)) {  
   
@@ -101,15 +111,15 @@ function eventHandler_(config, arg) {
     
     initialseEventHandler()
     
-    var userEmail = Session.getActiveUser().getEmail()
-    Log.info('Handling ' + config[1] + ' from ' + userEmail)
+    var userEmail = Session.getEffectiveUser().getEmail()
+    Log_.info('Handling ' + config[1] + ' from ' + (userEmail || 'unknown email') + ' (' + SCRIPT_NAME + ' ' + SCRIPT_VERSION + ')')
     
     // Call the main function
-    return config[3](arg)
+    return config[3](arg1, arg2)
     
   } catch (error) {
   
-    Assert.handleError(error, config[2], Log)
+    Assert.handleError(error, config[2], Log_)
     
   } finally {
   
@@ -124,19 +134,37 @@ function eventHandler_(config, arg) {
    */
  
   function initialseEventHandler() {
-
-    Log.init({
-      level: LOG_LEVEL, 
-      sheetId: LOG_SHEET_ID,
-      displayFunctionNames: LOG_DISPLAY_FUNCTION_NAMES})
       
+    var userEmail = Session.getEffectiveUser().getEmail()
+
     Assert.init({
-      handleError: HANDLE_ERROR, 
+      handleError:    HANDLE_ERROR, 
       sendErrorEmail: SEND_ERROR_EMAIL, 
-      emailAddress: ADMIN_EMAIL_ADDRESS,
-      scriptName: SCRIPT_NAME,
-      scriptVersion: SCRIPT_VERSION, 
+      emailAddress:   ADMIN_EMAIL_ADDRESS + ',' + userEmail,
+      scriptName:     SCRIPT_NAME,
+      scriptVersion:  SCRIPT_VERSION, 
     })
+
+    if (PRODUCTION_VERSION) {
+    
+      var firebaseUrl = properties.getProperty(PROPERTY_FIREBASE_URL)
+      var firebaseSecret = properties.getProperty(PROPERTY_FIREBASE_SECRET)
+
+      Log_ = BBLog.getLog({
+        displayUserId:        BBLog.DisplayUserId.USER_KEY_FULL,
+        lock:                 lock,
+        firebaseUrl:          firebaseUrl,
+        firebaseSecret:       firebaseSecret,
+      });
+    
+    } else {
+
+      Log_ = BBLog.getLog({
+        level:                DEBUG_LOG_LEVEL, 
+        displayFunctionNames: DEBUG_LOG_DISPLAY_FUNCTION_NAMES,
+        lock:                 lock,
+      })
+    }
 
   } // eventHandler_.initialseEventHandler() 
 
