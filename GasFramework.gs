@@ -57,8 +57,6 @@ function onInstall (arg1, arg2, properties, lock) {return eventHandler_(EVENT_HA
 
 function onOpen() {
 
-  Log_.functionEntryPoint()
-  
   var ui = SpreadsheetApp.getUi()
   var menu = ui.createMenu('Custom menu')
 
