@@ -13,8 +13,10 @@
 var Object1_ = (function(ns) {
 
   ns.function1 = function() {
+  
+    
   }
 
-return ns
+  return ns
 
 })(Object1_ || {})

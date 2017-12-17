@@ -90,6 +90,48 @@ function onOpen() {
 
 function eventHandler_(config, arg1, arg2, properties, lock) {
 
+  // Check the parameters
+
+  if (typeof arg1 === 'undefined') {
+    throw new Error('The first argument has to be defined or set to null')
+  } 
+
+  if (typeof arg2 === 'undefined') {
+    throw new Error('The second argument has to be defined or set to null')
+  } 
+
+  try {
+
+    properties.getProperties()
+    
+  } catch (error) {
+  
+    if (error.message.indexOf('Cannot call method "getProperties" of undefined') !== -1) {
+    
+      throw new Error('The third argument has to be one of the PropertiesServices')
+      
+    } else {
+    
+      throw error
+    }
+  }
+  
+  try {
+
+    lock.hasLock()
+    
+  } catch (error) {
+  
+    if (error.message.indexOf('Cannot call method "hasLock" of undefined') !== -1) {
+    
+      throw new Error('The fourth argument has to be one of the LockService')
+      
+    } else {
+    
+      throw error
+    }
+  }
+
   // By default, only one instance of this script can run at a time
   
   if (!lock.tryLock(1000)) {  
@@ -99,9 +141,11 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
     Assert.handleError(
       new Error('Only one call to this function can be made at a time'), 
         'Failed to handle event', 
-        Log)
+        Log_)
   }
-  
+
+  // Perform the main functionality
+
   try {
 
     // Perform any initial functions
@@ -123,6 +167,8 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
   
     lock.releaseLock()
   }
+  
+  return
   
   // Private Functions
   // -----------------
