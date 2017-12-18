@@ -132,24 +132,16 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
     }
   }
 
-  // By default, only one instance of this script can run at a time
-  
-  if (!lock.tryLock(1000)) {  
-  
-    initialseEventHandler()  
-    
-    Assert.handleError(
-      new Error('Only one call to this function can be made at a time'), 
-        'Failed to handle event', 
-        Log_)
-  }
-
   // Perform the main functionality
 
   try {
 
+    var originallyHasLock = lock.hasLock()
+
     // Perform any initial functions
     config[0]()    
+    
+    var originallyHasLock = lock.hasLock() 
     
     initialseEventHandler()
     
@@ -165,7 +157,9 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
     
   } finally {
   
-    lock.releaseLock()
+    if (!originallyHasLock) {
+      lock.releaseLock()
+    }
   }
   
   return
