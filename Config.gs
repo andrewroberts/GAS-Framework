@@ -35,7 +35,7 @@ var DEBUG_LOG_DISPLAY_FUNCTION_NAMES = PRODUCTION_VERSION ? BBLog.DisplayFunctio
 // Assert library
 // --------------
 
-var SEND_ERROR_EMAIL = false
+var SEND_ERROR_EMAIL = PRODUCTION_VERSION ? true : false
 var HANDLE_ERROR = Assert.HandleError.THROW
 var ADMIN_EMAIL_ADDRESS = 'andrewr1969@gmail.com'
 
