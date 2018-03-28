@@ -176,14 +176,14 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
     var userEmail = Session.getEffectiveUser().getEmail()
 
     Assert.init({
-      handleError:    HANDLE_ERROR, 
-      sendErrorEmail: SEND_ERROR_EMAIL, 
-      emailAddress:   ADMIN_EMAIL_ADDRESS + ',' + userEmail,
+      handleError:    HANDLE_ERROR_, 
+      sendErrorEmail: SEND_ERROR_EMAIL_, 
+      emailAddress:   ADMIN_EMAIL_ADDRESS_ + ',' + userEmail,
       scriptName:     SCRIPT_NAME,
       scriptVersion:  SCRIPT_VERSION, 
     })
 
-    if (PRODUCTION_VERSION) {
+    if (PRODUCTION_VERSION_) {
     
       var firebaseUrl = properties.getProperty(PROPERTY_FIREBASE_URL)
       var firebaseSecret = properties.getProperty(PROPERTY_FIREBASE_SECRET)
@@ -198,8 +198,8 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
     } else {
 
       Log_ = BBLog.getLog({
-        level:                DEBUG_LOG_LEVEL, 
-        displayFunctionNames: DEBUG_LOG_DISPLAY_FUNCTION_NAMES,
+        level:                DEBUG_LOG_LEVEL_, 
+        displayFunctionNames: DEBUG_LOG_DISPLAY_FUNCTION_NAMES_,
         lock:                 lock,
       })
     }
