@@ -21,23 +21,23 @@
 // Configuration
 // =============
 
-var SCRIPT_NAME = "GAS Framework"
-var SCRIPT_VERSION = "v1.0 (Dev)"
+const SCRIPT_NAME = "GAS Framework"
+const SCRIPT_VERSION = "v1.0.dev"
 
-var PRODUCTION_VERSION_ = false
+const PRODUCTION_VERSION_ = false
 
 // Log Library
 // -----------
 
-var DEBUG_LOG_LEVEL_ = PRODUCTION_VERSION_ ? BBLog.Level.INFO : BBLog.Level.FINER
-var DEBUG_LOG_DISPLAY_FUNCTION_NAMES_ = PRODUCTION_VERSION_ ? BBLog.DisplayFunctionNames.NO : BBLog.DisplayFunctionNames.YES
+const DEBUG_LOG_LEVEL_ = PRODUCTION_VERSION_ ? BBLog.Level.INFO : BBLog.Level.FINER
+const DEBUG_LOG_DISPLAY_FUNCTION_NAMES_ = PRODUCTION_VERSION_ ? BBLog.DisplayFunctionNames.NO : BBLog.DisplayFunctionNames.YES
 
 // Assert library
 // --------------
 
-var SEND_ERROR_EMAIL_ = PRODUCTION_VERSION_ ? true : false
-var HANDLE_ERROR_ = Assert.HandleError.THROW
-var ADMIN_EMAIL_ADDRESS_ = 'andrewr1969@gmail.com'
+const SEND_ERROR_EMAIL_ = PRODUCTION_VERSION_ ? true : false
+const HANDLE_ERROR_ = Assert.HandleError.THROW
+const ADMIN_EMAIL_ADDRESS_ = 'andrewr1969@gmail.com'
 
 // Constants/Enums
 // ===============

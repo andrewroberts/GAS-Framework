@@ -37,7 +37,7 @@ var Log_
 
 //   :      [function() {},  '()',      'Failed to ', ],
 
-var EVENT_HANDLERS = {
+const EVENT_HANDLERS = {
 
 //                         Initial actions  Name                         onError Message                        Main Functionality
 //                         ---------------  ----                         ---------------                        ------------------
@@ -82,10 +82,10 @@ function onOpen() {
  *   [2] {String} onErrorMessage
  *   [3] {Function} mainFunction
  
- * @parma {Object}   arg1       The argument passed to the top-level event handler
- * @parma {Object}   arg2       The argument passed to the top-level event handler
- * @parma {Property} properties A PropertiesService
- * @parma {Lock}     lock       A LockService
+ * @param {Object}   arg1       The argument passed to the top-level event handler
+ * @param {Object}   arg2       The argument passed to the top-level event handler
+ * @param {Property} properties A PropertiesService
+ * @param {Lock}     lock       A LockService
  */
 
 function eventHandler_(config, arg1, arg2, properties, lock) {
@@ -140,8 +140,6 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
 
     // Perform any initial functions
     config[0]()    
-    
-    var originallyHasLock = lock.hasLock() 
     
     initialseEventHandler()
     
