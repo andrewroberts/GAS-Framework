@@ -37,7 +37,7 @@ var Log_
 
 //   :      [function() {},  '()',      'Failed to ', ],
 
-const EVENT_HANDLERS = {
+var EVENT_HANDLERS = {
 
 //                         Initial actions  Name                         onError Message                        Main Functionality
 //                         ---------------  ----                         ---------------                        ------------------
