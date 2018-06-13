@@ -8,7 +8,7 @@
 // Object1_.gs
 // ===========
 //
-// Object for managing the rota sheet
+// Object template
 
 var Object1_ = (function(ns) {
 

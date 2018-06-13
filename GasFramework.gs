@@ -1,3 +1,216 @@
+
+//  function getService(service, check, fallBackService, serviceName) {
+//
+//    var useFallbackService = false
+//    var errorMessage = ''
+//  
+//    if (typeof service === 'undefined') {
+//    
+//      useFallbackService = true
+//      
+//    } else {
+//    
+//      try {
+//      
+//        service[check]() // Check we have a valid service
+//        
+//      } catch (error) {
+//      
+//        errorMessage = error.message
+//        useFallbackService = true
+//      }
+//    }
+//  
+//    if (useFallbackService) {
+//    
+//      service = fallBackService  
+//      
+//      if (service === null) {    
+//        throw new Error('Can not access service: ' + serviceName + ', Error: ' + errorMessage)   
+//      }    
+//    }
+//    
+//    return service
+//
+//  } // eventHandler_.getService()
+//  
+//  /**
+//   * Get different log objects for production and debug
+//   *
+//   * @return {BBLog}
+//   */
+//
+//  function getLog() {
+//  
+//    var log
+//    var lock = LockService.getDocumentLock()
+//
+//    if (PRODUCTION_VERSION) {
+//        
+//      var firebaseUrl = PropertiesService
+//        .getScriptProperties()
+//        .getProperty('FIREBASE_URL')
+//        
+//      var firebaseSecret = PropertiesService
+//        .getScriptProperties()
+//        .getProperty('FIREBASE_SECRET')  
+//        
+//      if (firebaseUrl !== null && firebaseSecret !== null) {
+//      
+//        var userLog = BBLog.getLog({lock: lock}); 
+//            
+//        var masterLog = BBLog.getLog({
+//          sheetId: null, // No GSheet
+//          displayUserId: BBLog.DisplayUserId.USER_KEY_FULL,
+//          firebaseUrl: firebaseUrl,
+//          firebaseSecret: firebaseSecret
+//        })
+//      
+//        log = {
+//        
+//          clear: function() {
+//            userLog.clear();
+//            masterLog.clear();      
+//          },
+//          
+//          info: function() {
+//            userLog.info.apply(userLog, arguments);
+//            masterLog.info.apply(masterLog, arguments);          
+//          },      
+//          
+//          warning: function() {
+//            userLog.warning.apply(userLog, arguments);
+//            masterLog.warning.apply(masterLog, arguments);          
+//          },
+//    
+//          severe: function() {
+//            userLog.severe.apply(userLog, arguments);
+//            masterLog.severe.apply(masterLog, arguments);          
+//          }
+//        }
+//        
+//      } else {
+//
+//        log = BBLog.getLog({lock: lock});         
+//      }
+//      
+//      log.functionEntryPoint = function() {},
+//      log.fine = function() {}
+//      log.finer = function() {}
+//      log.finest = function() {}
+//            
+//    } else { // !PRODUCTION_VERSION
+//    
+//      var logOptions = {
+//        lock: lock,
+//        level: DEBUG_LOG_LEVEL,
+//        displayFunctionNames: DEBUG_LOG_DISPLAY_FUNCTION_NAMES,      
+//      }
+//    
+//      if (SpreadsheetApp.getActiveSpreadsheet() === null) {
+//        logOptions.sheetId = TEST_SPREADSHEET_ID        
+//      }
+//
+//      log = BBLog.getLog(logOptions)      
+//    }
+//    
+//    return log;
+//    
+//  } // eventHandler_.getLog()
+//
+//  /**
+//   * Initialize the Assert library
+//   */
+//   
+//  function initializeAssertLibrary() {
+//    
+//    Log_.functionEntryPoint()
+//    
+//    var sendErrorEmail               = false
+//    var calledFromInstallableTrigger = false
+//    var adminEmailAddress            = DEV_EMAIL_ADDRESS
+//    
+//    if (typeof arg === 'undefined') {
+//    
+//      Log_.fine('No arg')
+//
+//    } else {
+//    
+//      Log_.fine('arg: ' + JSON.stringify(arg))      
+//
+//      // The arg is only defined for triggers - built-in or installable,
+//      // but we still need to tell the difference as they have different 
+//      // authority
+//      
+//      calledFromInstallableTrigger = arg.hasOwnProperty('triggerUid')
+//      Log_.fine('calledFromInstallableTrigger: ' + calledFromInstallableTrigger)
+//      
+//      if (arg.hasOwnProperty('authMode')) {
+//      
+//        Log_.fine('arg.authMode: ' + JSON.stringify(arg.authMode))
+//        
+//        if (arg.authMode === ScriptApp.AuthMode.FULL) {
+//        
+//          if (userEmail !== '' && typeof userEmail !== 'undefined') {
+//            adminEmailAddress += ',' + userEmail
+//          }
+//            
+//          sendErrorEmail = true
+//          Log_.fine('Error emails will sent to ' + adminEmailAddress)
+//          
+//        } else {
+//        
+//          Log_.fine('Not sending error emails')
+//        }
+//        
+//      } else {
+//      
+//        Log_.fine('No authMode')
+//      } 
+//    }
+//
+//    var handleError
+//
+//    if (calledFromInstallableTrigger) {
+//
+//      // No point trying to display the error from a installable trigger
+//      // as it does not run in a UI context, so throw it so the email notification
+//      // is sent  
+//      
+//      handleError = Assert.HandleError.THROW 
+//      Log_.fine('Called from installable trigger')
+//
+//    } else {
+//    
+//      if (PRODUCTION_VERSION) {
+//      
+//        // The error is from a built-in trigger from the UI (onEdit() or onOpen()) so
+//        // tell the user
+//        handleError = Assert.HandleError.DISPLAY
+//        Log_.fine('Display errors')
+//        
+//      } else {
+//      
+//        Log_.fine('In debug mode, not called from installable trigger')
+//        handleError = Assert.HandleError.THROW
+//        Log_.fine('Throw errors')        
+//      }
+//    }
+//
+//    Log_.fine('handleError: ' + handleError)
+//    Log_.fine('sendErrorEmail: ' + sendErrorEmail)
+//    Log_.fine('adminEmailAddress: ' + adminEmailAddress)
+//
+//    Assert.init({
+//      handleError: handleError,
+//      sendErrorEmail: sendErrorEmail, 
+//      emailAddress: adminEmailAddress,
+//      scriptName: SCRIPT_NAME,
+//      scriptVersion: SCRIPT_VERSION, 
+//    })
+//    
+//  } // eventHandler_.initializeAssertLibrary()
+
 // 34567890123456789012345678901234567890123456789012345678901234567890123456789
 
 // JSHint - TODO
@@ -37,7 +250,7 @@ var Log_
 
 //   :      [function() {},  '()',      'Failed to ', ],
 
-var EVENT_HANDLERS = {
+var EVENT_HANDLERS_ = {
 
 //                         Initial actions  Name                         onError Message                        Main Functionality
 //                         ---------------  ----                         ---------------                        ------------------
@@ -45,9 +258,9 @@ var EVENT_HANDLERS = {
   onInstall:               [function() {},  'onInstall()',              'Failed to install',                    onInstall_],
 }
 
-// function (arg)                     {return eventHandler_(EVENT_HANDLERS., arg)}
+// function (arg)                     {return eventHandler_(EVENT_HANDLERS_., arg)}
 
-function onInstall (arg1, arg2, properties, lock) {return eventHandler_(EVENT_HANDLERS.onInstall, arg1, arg2, properties, lock)}
+function onInstall (arg1, arg2, properties, lock) {return eventHandler_(EVENT_HANDLERS_.onInstall, arg1, arg2, properties, lock)}
 
 /**
  * Event handler for the sheet being opened. This is a special case
@@ -140,10 +353,11 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
 
     // Perform any initial functions
     config[0]()    
-    
+
+    var userEmail = Session.getActiveUser().getEmail()
+
     initialseEventHandler()
     
-    var userEmail = Session.getEffectiveUser().getEmail()
     Log_.info('Handling ' + config[1] + ' from ' + (userEmail || 'unknown email') + ' (' + SCRIPT_NAME + ' ' + SCRIPT_VERSION + ')')
     
     // Call the main function
@@ -171,8 +385,6 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
  
   function initialseEventHandler() {
       
-    var userEmail = Session.getEffectiveUser().getEmail()
-
     Assert.init({
       handleError:    HANDLE_ERROR_, 
       sendErrorEmail: SEND_ERROR_EMAIL_, 
