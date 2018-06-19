@@ -37,7 +37,7 @@ var DEBUG_LOG_DISPLAY_FUNCTION_NAMES_ = PRODUCTION_VERSION_ ? BBLog.DisplayFunct
 
 var SEND_ERROR_EMAIL_ = PRODUCTION_VERSION_ ? true : false
 var HANDLE_ERROR_ = Assert.HandleError.THROW
-var ADMIN_EMAIL_ADDRESS_ = 'andrewr1969@gmail.com'
+var ADMIN_EMAIL_ADDRESS_ = ''
 
 // Constants/Enums
 // ===============

@@ -128,7 +128,7 @@
 //    
 //    var sendErrorEmail               = false
 //    var calledFromInstallableTrigger = false
-//    var adminEmailAddress            = DEV_EMAIL_ADDRESS
+//    var adminEmailAddress            = ADMIN_EMAIL_ADDRESS_
 //    
 //    if (typeof arg === 'undefined') {
 //    
