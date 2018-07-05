@@ -22,7 +22,7 @@
 // =============
 
 var SCRIPT_NAME = "GAS Framework"
-var SCRIPT_VERSION = "v1.0.dev"
+var SCRIPT_VERSION = "v0.dev"
 
 var PRODUCTION_VERSION_ = false
 
@@ -50,9 +50,9 @@ var ADMIN_EMAIL_ADDRESS_ = ''
 /**
  *
  *
- * @param {Object} 
+ * @param {object} 
  *
- * @return {Object}
+ * @return {object}
  */
 /* 
 function functionTemplate() {

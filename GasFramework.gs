@@ -365,7 +365,24 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
     
   } catch (error) {
   
-    Assert.handleError(error, config[2], Log_)
+    var handleError = Assert.HandleError.DISPLAY_FULL
+
+    if (!PRODUCTION_VERSION_) {
+      handleError = Assert.HandleError.THROW
+    }
+
+    var assertConfig = {
+      error:          error,
+      userMessage:    config[1],
+      log:            Log_,
+      handleError:    handleError, 
+      sendErrorEmail: SEND_ERROR_EMAIL_, 
+      emailAddress:   ADMIN_EMAIL_ADDRESS_,
+      scriptName:     SCRIPT_NAME,
+      scriptVersion:  SCRIPT_VERSION, 
+    }
+
+    Assert.handleError(assertConfig) 
     
   } finally {
   
@@ -385,14 +402,6 @@ function eventHandler_(config, arg1, arg2, properties, lock) {
  
   function initialseEventHandler() {
       
-    Assert.init({
-      handleError:    HANDLE_ERROR_, 
-      sendErrorEmail: SEND_ERROR_EMAIL_, 
-      emailAddress:   ADMIN_EMAIL_ADDRESS_ + ',' + userEmail,
-      scriptName:     SCRIPT_NAME,
-      scriptVersion:  SCRIPT_VERSION, 
-    })
-
     if (PRODUCTION_VERSION_) {
     
       var firebaseUrl = properties.getProperty(PROPERTY_FIREBASE_URL)
