@@ -59,7 +59,7 @@ function onInstall(args) {return eventHandler_(EVENT_HANDLERS_.onInstall, args)}
  *   [2] {String} onErrorMessage
  *   [3] {Function} mainFunction
  *
- * @param {Object}   arg1       The argument passed to the top-level event handler
+ * @param {Object}   args       The argument passed to the top-level event handler
  */
 
 function eventHandler_(config, args) {
@@ -76,7 +76,7 @@ function eventHandler_(config, args) {
     Log_.info('Handling ' + config[0] + ' from ' + (userEmail || 'unknown email') + ' (' + SCRIPT_NAME + ' ' + SCRIPT_VERSION + ')')
     
     // Call the main function
-    return config[2](arg1)
+    return config[2](args)
     
   } catch (error) {
   
