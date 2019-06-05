@@ -39,6 +39,11 @@ var SEND_ERROR_EMAIL_ = PRODUCTION_VERSION_ ? true : false
 var HANDLE_ERROR_ = Assert.HandleError.THROW
 var ADMIN_EMAIL_ADDRESS_ = ''
 
+// Tests
+// -----
+
+var TEST_SHEET_ID_ = ''
+
 // Constants/Enums
 // ===============
 
