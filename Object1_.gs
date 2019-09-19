@@ -22,6 +22,9 @@ var Object1_ = (function(ns) {
  
   ns.function1 = function() {
   
+    Log_.functionEntryPoint() 
+    
+        
     
   } // Object1_.function1()
 
