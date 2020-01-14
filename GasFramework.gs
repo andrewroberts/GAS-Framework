@@ -80,17 +80,11 @@ function eventHandler_(config, args) {
     
   } catch (error) {
   
-    var handleError = Assert.HandleError.DISPLAY_FULL
-
-    if (!PRODUCTION_VERSION_) {
-      handleError = Assert.HandleError.THROW
-    }
-
     var assertConfig = {
       error:          error,
       userMessage:    config[1],
       log:            Log_,
-      handleError:    handleError, 
+      handleError:    HANDLE_ERROR_, 
       sendErrorEmail: SEND_ERROR_EMAIL_, 
       emailAddress:   ADMIN_EMAIL_ADDRESS_,
       scriptName:     SCRIPT_NAME,
