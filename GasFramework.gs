@@ -109,8 +109,6 @@ function eventHandler_(config, args) {
  
 function onInstall_() {
 
-  Log_.functionEntryPoint()
-  
   // TODO ...
 
 } // onInstall() 
