@@ -16,7 +16,7 @@
 // The filename is prepended with _API as the Github chrome extension won't 
 // push a file with the same name as the project.
 
-var Log_
+let Log_
 
 // Public event handlers
 // ---------------------
@@ -33,7 +33,7 @@ var Log_
 // For debug, rather than production builds, lower level functions are exposed
 // in the menu
 
-var EVENT_HANDLERS_ = {
+const EVENT_HANDLERS_ = {
 
 //                           Name                            onError Message                          Main Functionality
 //                           ----                            ---------------                          ------------------
@@ -66,7 +66,7 @@ function eventHandler_(config, args) {
 
   try {
 
-    var userEmail = Session.getActiveUser().getEmail()
+    const userEmail = Session.getActiveUser().getEmail()
 
     Log_ = BBLog.getLog({
       level:                DEBUG_LOG_LEVEL_, 
@@ -80,7 +80,7 @@ function eventHandler_(config, args) {
     
   } catch (error) {
   
-    var assertConfig = {
+    const assertConfig = {
       error:          error,
       userMessage:    config[1],
       log:            Log_,

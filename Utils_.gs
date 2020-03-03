@@ -10,7 +10,7 @@
 //
 // Object template
 
-var Utils_ = (function(ns) {
+const Utils_ = (function(ns) {
 
   /**
    * Get the active spreadsheet, failing that the test one.
@@ -22,7 +22,7 @@ var Utils_ = (function(ns) {
   
     Log_.functionEntryPoint() 
     
-    var spreadsheet = SpreadsheetApp.getActive()
+    const spreadsheet = SpreadsheetApp.getActive()
     
     if (spreadsheet === null) {
       if (!PRODUCTION_VERSION_) {

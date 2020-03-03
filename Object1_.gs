@@ -10,7 +10,7 @@
 //
 // Object template
 
-var Object1_ = (function(ns) {
+const Object1_ = (function(ns) {
 
   /**
    *
