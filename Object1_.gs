@@ -10,7 +10,7 @@
 //
 // Object template
 
-const Object1_ = (function(ns) {
+var Object1_ = (function(ns) {
 
   /**
    *
@@ -28,4 +28,4 @@ const Object1_ = (function(ns) {
 
   return ns
 
-})(Object1_ || {})
+})({})
