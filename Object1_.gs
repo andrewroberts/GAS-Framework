@@ -28,4 +28,4 @@ var Object1_ = (function(ns) {
 
   return ns
 
-})({})
+})(Object1_ || {})
