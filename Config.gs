@@ -47,7 +47,7 @@ var TEST_FLAG_ = true
 var TEST_SHEET_ID_ = ''
 
 if (PRODUCTION_VERSION_) {
-  if (TEST_FLAG_) {
+  if (!TEST_FLAG_) {
     throw new Error('Test Flag set in production')
   }
 }
