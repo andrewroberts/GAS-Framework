@@ -20,8 +20,6 @@ var Utils_ = (function(ns) {
  
   ns.getSpreadsheet = function() {
   
-    Log_.functionEntryPoint() 
-    
     var spreadsheet = SpreadsheetApp.getActive()
     
     if (spreadsheet === null) {
@@ -33,8 +31,7 @@ var Utils_ = (function(ns) {
     }
     
     return spreadsheet
-    
-  } // Utils_.getSpreadsheet()
+  }
         
   return ns
 
