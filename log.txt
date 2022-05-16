@@ -394,3 +394,55 @@ Mon May 16 12:08:35 2022 Error occurs when booting...
 Mon May 16 12:08:35 2022 [1;31mError(-1): Compile file://home/codespace/gslang_editor/load_script.gs failed.[2;37;0m
 Coroutine: co[12:v1]boot
 At <Internal routine>
+Mon May 16 12:11:53 2022 [1;31mfile://home/codespace/gslang_editor/load_script.gs(49): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:11:53 2022 Error occurs when booting...
+Mon May 16 12:11:53 2022 [1;31mError(-1): Compile file://home/codespace/gslang_editor/load_script.gs failed.[2;37;0m
+Coroutine: co[12:v1]boot
+At <Internal routine>
+Mon May 16 12:12:06 2022 [1;31mfile://home/codespace/gslang_editor/load_script.gs(49): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:06 2022 Error occurs when booting...
+Mon May 16 12:12:06 2022 [1;31mError(-1): Compile file://home/codespace/gslang_editor/load_script.gs failed.[2;37;0m
+Coroutine: co[12:v1]boot
+At <Internal routine>
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/initialize.gs(123): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/initialize.gs(196): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/initialize.gs(203): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/initialize.gs(208): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 Error occurs when booting...
+Mon May 16 12:12:07 2022 [1;31mError(-1): Compile file://home/codespace/gslang_editor/initialize.gs failed.[2;37;0m
+Coroutine: co[12:v1]boot
+At <Internal routine>
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(73): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(89): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(96): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(133): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(164): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:07 2022 Error occurs when booting...
+Mon May 16 12:12:07 2022 [1;31mError(-1): Compile file://home/codespace/gslang_editor/load_project.gs failed.[2;37;0m
+Coroutine: co[12:v1]boot
+At <Internal routine>
+Mon May 16 12:12:08 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(73): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:08 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(89): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:08 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(96): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:08 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(133): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:08 2022 [1;31mfile://home/codespace/gslang_editor/load_project.gs(164): error C2065: 'json': undeclared identifier
+[2;37;0m
+Mon May 16 12:12:08 2022 Error occurs when booting...
+Mon May 16 12:12:08 2022 [1;31mError(-1): Compile file://home/codespace/gslang_editor/load_project.gs failed.[2;37;0m
+Coroutine: co[12:v1]boot
+At <Internal routine>
