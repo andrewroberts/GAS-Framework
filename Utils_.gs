@@ -12,6 +12,8 @@
 
 var Utils_ = (function(ns) {
 
+  // Some code
+
   /**
    * Get the active spreadsheet, failing that the test one.
    *
@@ -19,7 +21,7 @@ var Utils_ = (function(ns) {
    */
  
   ns.getSpreadsheet = function() {
-  
+
     var spreadsheet = SpreadsheetApp.getActive()
     
     if (spreadsheet === null) {
