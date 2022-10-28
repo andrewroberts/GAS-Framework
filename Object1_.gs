@@ -3,7 +3,7 @@
 // JSHint - TODO
 /* jshint asi: true */
 
-(function() {"use strict"})()
+"use strict"
 
 // Object1_.gs
 // ===========
@@ -11,20 +11,12 @@
 // Object template
 
 var Object1_ = (function(ns) {
-
-  /**
-   *
-   *
-   * @param {object} 
-   *
-   * @return {object}
-   */
  
   ns.function1 = function() {
       
     
     
-  } // Object1_.function1()
+  }
 
   return ns
 

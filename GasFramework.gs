@@ -1,10 +1,10 @@
 // JSHint - TODO
 /* jshint asi: true */
 
-(function() {"use strict"})()
+"use strict"
 
-// GAS_Framework.gs
-// ================
+// !!! FILE_NAME !!!!.gs
+// =====================
 //
 // Dev: AndrewRoberts.net
 //
@@ -94,17 +94,9 @@ function eventHandler_(config, args) {
 
 // Private event handlers
 // ----------------------
-
-/**
- *
- *
- * @param {object} 
- *
- * @return {object}
- */
  
 function onInstall_() {
 
   // TODO ...
 
-} // onInstall() 
+} 

@@ -3,7 +3,7 @@
 // JSHint - TODO
 /* jshint asi: true */
 
-(function() {"use strict"})()
+"use strict"
 
 // Code review all files - TODO
 // JSHint review (see files) - TODO

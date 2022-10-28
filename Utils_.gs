@@ -3,7 +3,7 @@
 // JSHint - TODO
 /* jshint asi: true */
 
-(function() {"use strict"})()
+"use strict"
 
 // Utils_.gs
 // =========
@@ -19,7 +19,7 @@ var Utils_ = (function(ns) {
    */
  
   ns.getSpreadsheet = function() {
-
+  
     var spreadsheet = SpreadsheetApp.getActive()
     
     if (spreadsheet === null) {
