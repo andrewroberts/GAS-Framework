@@ -13,6 +13,21 @@
 var Utils_ = (function(ns) {
 
   /**
+   * Search a 2D array
+   * 
+   * @param Array valueArray - 2D array to seach
+   * @param object valueToFind
+   * @param columnIndex - column to search [DEFAULT: 0]
+   * @return rowIndex
+   */
+
+  ns.findIn2DArray = function(valueArray, valueToFind, columnIndex) {
+    const rowIndex = valueArray.findIndex(row => row[columnIndex] === valueToFind)
+    if (rowIndex === -1) throw new Error(`Could not find ${valueToFind}`)
+    return rowIndex
+  }
+
+  /**
    * Get the active spreadsheet, failing that the test one.
    *
    * @return {Spreadsheet} spreadsheet
