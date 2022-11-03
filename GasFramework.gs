@@ -12,7 +12,7 @@
 //
 // This files contains all of the event handlers.
 
-var Log_
+const Log_ = null
 
 // Public event handlers
 // ---------------------
@@ -29,7 +29,7 @@ var Log_
 // For debug, rather than production builds, lower level functions are exposed
 // in the menu
 
-var EVENT_HANDLERS_ = {
+const EVENT_HANDLERS_ = {
 
 //                           Name                            onError Message                          Main Functionality
 //                           ----                            ---------------                          ------------------
@@ -62,7 +62,7 @@ function eventHandler_(config, args) {
 
   try {
 
-    var userEmail = Session.getActiveUser().getEmail()
+    const userEmail = Session.getActiveUser().getEmail()
 
     Log_ = BBLog.getLog({
       level:                DEBUG_LOG_LEVEL_, 
@@ -76,7 +76,7 @@ function eventHandler_(config, args) {
     
   } catch (error) {
   
-    var assertConfig = {
+    const assertConfig = {
       error:          error,
       userMessage:    config[1],
       log:            Log_,
