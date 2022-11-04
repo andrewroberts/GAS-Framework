@@ -2,8 +2,9 @@
 
 // JSHint - TODO
 /* jshint asi: true */
+/* jshint esversion: 6 */
 
-"use strict"
+(function(){"use strict"})()
 
 // Code review all files - TODO
 // JSHint review (see files) - TODO

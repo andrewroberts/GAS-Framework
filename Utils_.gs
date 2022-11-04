@@ -2,8 +2,9 @@
 
 // JSHint - TODO
 /* jshint asi: true */
+/* jshint esversion: 6 */
 
-"use strict"
+(function(){"use strict"})()
 
 // Utils_.gs
 // =========
