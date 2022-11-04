@@ -13,7 +13,7 @@
 //
 // This files contains all of the event handlers.
 
-const Log_ = null
+let Log_ = null
 
 // Public event handlers
 // ---------------------
@@ -61,9 +61,9 @@ function onInstall(args) {return eventHandler_(EVENT_HANDLERS_.onInstall, args)}
 
 function eventHandler_(config, args) {
 
-  try {
+  const userEmail = Session.getActiveUser().getEmail()
 
-    const userEmail = Session.getActiveUser().getEmail()
+  try {
 
     Log_ = BBLog.getLog({
       level:                DEBUG_LOG_LEVEL_, 
