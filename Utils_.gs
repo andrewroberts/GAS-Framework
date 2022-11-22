@@ -49,6 +49,12 @@ var Utils_ = (function(ns) {
     return spreadsheet
   }
         
+  ns.alert = function(message) {
+    var spreadsheet = SpreadsheetApp.getActive()
+    if (spreadsheet === null) return
+    SpreadsheetApp.getUi().alert(message)
+  }
+
   return ns
 
 })({})
