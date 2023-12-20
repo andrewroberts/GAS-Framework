@@ -1,11 +1,13 @@
 {
   "timeZone": "Europe/London",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
   "dependencies": {
     "libraries": [
       {
         "userSymbol": "Assert",
         "libraryId": "1R-rxUHuQU0ez95FlZz9fxqifbYFszHnukqzv_3Uk5zM3eG4eRBrh_E1M",
-        "version": "27"
+        "version": "28"
       },
       {
         "userSymbol": "BBLog",
@@ -13,7 +15,5 @@
         "version": "20"
       }
     ]
-  },
-  "exceptionLogging": "STACKDRIVER",
-  "runtimeVersion": "V8"
+  }
 }

@@ -77,6 +77,8 @@ function eventHandler_(config, args) {
     
   } catch (error) {
   
+    console.log(error.message)
+
     const assertConfig = {
       error:          error,
       userMessage:    config[1],
