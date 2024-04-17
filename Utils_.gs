@@ -14,6 +14,24 @@
 var Utils_ = (function(ns) {
 
   /**
+   * Create an object where the keys are the header names and the value the header (zero) index
+   * 
+   * @param {Sheet} sheet
+   * @param {number} headerRowNumber [OPTIONAL, DEFAULT = 1]
+   * @return {object} 
+   */
+
+  ns.getHeaderIndexes = function(sheet, headerRowNumber) {
+    if (headerRowNumber === undefined) headerRowNumber = 1
+    let headerColumnIndexes = {}
+    sheet
+      .getRange(headerRowNumber, 1, 1, sheet.getLastColumn())
+      .getValues()[0]
+      .forEach((headerName, index) => {headerColumnIndexes[headerName.trim()] = index})
+    return headerColumnIndexes
+  }
+  
+  /**
    * Search a 2D array
    * 
    * @param Array valueArray - 2D array to seach
