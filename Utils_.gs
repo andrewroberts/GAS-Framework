@@ -13,6 +13,52 @@
 
 var Utils_ = (function(ns) {
 
+  /*
+
+  Create a two-deep object from a 2D array. The first column is used as the 
+  key and the value of each key is another object using the remaining headers
+
+        city    pop    height
+        ----    ---    ------
+    1  | city1   111    1111
+    2  | city2   222    2222
+    3  | city3   333    3333
+    
+    {
+      city1: {
+        pop: 111, 
+        height: 1111
+      }, 
+      city2: {
+        pop: 222, 
+        height: 2222
+      }, 
+      city3: {
+        pop: 333, 
+        height: 3333
+      }, 
+    }
+    
+  */
+
+  ns.createObjectFrom2DArray = function(sheet) {
+    const data = sheet.getDataRange().getValues()
+    const header = data.shift()
+    let object = {}
+    data.forEach(row =>  {
+      header.reduce((accumulator, currentValue, currentIndex) => {
+        var key = row[0];
+        if (currentIndex === 0) {
+          object[key] = {}
+        } else {
+          object[key][currentValue] = row[currentIndex]
+        }
+        return accumulator
+      }, {}) 
+      })
+    return object
+  }
+
   /**
    * Takes a sheet param and creates an array of json objects
    * Keys to each json is based on the titles in the header row
