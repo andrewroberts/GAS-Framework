@@ -14,6 +14,22 @@
 var Utils_ = (function(ns) {
 
   /**
+   * Takes a sheet param and creates an array of json objects
+   * Keys to each json is based on the titles in the header row
+   *
+   * @param {Spreadsheet object} sheet Spreadsheet object (or 2D array)
+   */
+
+  ns.getArrayOfObjects = function(sheet) {
+    const data = sheet.getDataRange().getValues()
+    const headers = data.shift()
+    return data.map(row => row.reduce((prev, curr,index) => {
+      prev[headers[index]] = curr
+      return prev
+    },{}))
+  }
+
+  /**
    * Create an object where the keys are the header names and the value the header (zero) index
    * 
    * @param {Sheet} sheet
@@ -53,9 +69,7 @@ var Utils_ = (function(ns) {
    */
  
   ns.getSpreadsheet = function() {
-  
-    var spreadsheet = SpreadsheetApp.getActive()
-    
+    var spreadsheet = SpreadsheetApp.getActive()    
     if (spreadsheet === null) {
       if (!PRODUCTION_VERSION_) {
         spreadsheet = SpreadsheetApp.openById(TEST_SHEET_ID_)
@@ -63,7 +77,6 @@ var Utils_ = (function(ns) {
         throw new Error('No active spreadsheet')
       }
     }
-    
     return spreadsheet
   }
         
